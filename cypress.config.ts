@@ -56,7 +56,6 @@ module.exports = {
     //   // })
 
     //   // on('after:run', (details) => {
-    //   //   // Delete the temporary file with the creds for the Cypress Vouch account.
 
     //   // })
       return require('./cypress/plugins/index.ts')(on, config);

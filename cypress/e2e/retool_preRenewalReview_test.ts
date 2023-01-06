@@ -51,14 +51,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+/*
 const ClickNextButton = () => {
     cy.contains('span','Next')
         .parent('button')
         .click();
 }
 
-before('Sign in to Google and go to the Retool web app', () => {
+const SignInToGoogleAccount = () => {
     // Get Cypress Vouch account credentials.
     const credsObject:any = Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS;
 
@@ -88,6 +88,12 @@ before('Sign in to Google and go to the Retool web app', () => {
 
     // Click 'Next' button.
     ClickNextButton();
+}
+*/
+
+before('Sign in to Google and go to the Retool web app', () => {
+    // SignInToGoogleAccount();
+    cy.SignInToGoogleAccount();
 })
 //////  //////////////  //////
 ////// SIGN-IN COMPLETE //////

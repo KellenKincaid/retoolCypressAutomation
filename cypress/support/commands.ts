@@ -25,6 +25,45 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
+
+Cypress.Commands.add("ClickNextButton", () => {
+    cy.contains('span','Next')
+        .parent('button')
+        .click();
+})
+
+Cypress.Commands.add("SignInToGoogleAccount", () => {
+    // Get Cypress Vouch account credentials.
+    const credsObject:any = Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS;
+
+    // Go to google sign in page
+    cy.visit('https://accounts.google.com/');
+
+    // Enter email.
+    cy.get('input[type="email"]')
+        .type(credsObject.email);
+
+    // Click 'Next' buttton.
+    cy.ClickNextButton();
+
+    // Enter password.
+    cy.get('div[id="password"]')
+        .find('input[type="password"]')
+        .type(credsObject.password);
+
+    // Click 'Next' button.
+    cy.ClickNextButton();
+
+    // Enter one-time password password.
+    cy.contains('div', 'Enter code')
+        .parent('div')
+        .find('input[type="tel"]')
+        .type(credsObject.oneTimePassword);
+
+    // Click 'Next' button.
+    cy.ClickNextButton();
+})
+
 // declare global {
 //   namespace Cypress {
 //     interface Chainable {
