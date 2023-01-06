@@ -32,9 +32,11 @@ Cypress.Commands.add("ClickNextButton", () => {
         .click();
 })
 
-Cypress.Commands.add("SignInToGoogleAccount", () => {
+Cypress.Commands.add("SignInToGoogleAccount", (credsObject:any) => {
     // Get Cypress Vouch account credentials.
-    const credsObject:any = Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS;
+    // const credsObject:any = Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS;
+    // let credsObject:any;
+    // cy.task('GetCypressVouchAccountCredentials').then((result) => {credsObject = result;})
 
     // Go to google sign in page
     cy.visit('https://accounts.google.com/');

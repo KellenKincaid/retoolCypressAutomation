@@ -29,25 +29,9 @@
 ///////////                                                                                       ///////////
 ///////////                                       PROBLEMS                                        ///////////
 ///////////                                                                                       ///////////
-/////////// Cypress cannot interact with files once the testing has begun. Therefore, all the     ///////////
-///////////     Vouch-account-credential-retrieval stuff must happen at the moment Cypress open.  ///////////
-/////////// This was achieved by putting all of that functionality in cypress.config.ts and       ///////////
-///////////     assigning the result to this environment variable:                                ///////////
-///////////     Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS                                         ///////////
-/////////// There are 2 big problems with retrieving the credentials this way:                    ///////////
-///////////     1: The one-time password (used for 2FA) expires after a few seconds, which means  ///////////
-///////////         reruns are not really possible. You'll have to close Cypress and re-open it.  ///////////
-///////////         to rerun a test. Tedious but doable.                                          ///////////
-///////////     2: Having multiple it() tests is not possible because each one runs in its own    ///////////
-///////////         instance. Meaning that only the first instance will be able to sign in        ///////////
-///////////         (again, because the one-tine 2FA password will most-likely have expired).     ///////////
-///////////         This is unacceptable so i'll be continuing to research alternate ways to have ///////////
-///////////         Cypress sign in to it's Vouch account.                                        ///////////
-///////////                                                                                       ///////////
-///////////                                  POTENTIAL SOLUTIONS                                  ///////////
-///////////                                                                                       ///////////
-/////////// If the 2FA one-time password isn't absolutely necessary for qaCypressAutomation's,    ///////////
-///////////     Vouch account, I might request to have it removed. That would fix problems 1 & 2. ///////////
+/////////// For some reason, when I rerun a test, the sign-in fails because after it enters the   ///////////
+///////////     one-time 2FA password, it then prompts the test for its email again.              ///////////
+/////////// I'll fix this later.                                                                  ///////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,8 +76,9 @@ const SignInToGoogleAccount = () => {
 */
 
 before('Sign in to Google and go to the Retool web app', () => {
-    // SignInToGoogleAccount();
-    cy.SignInToGoogleAccount();
+    cy.task('GetCypressVouchAccountCredentials').then((credsObject:any) => {
+        cy.SignInToGoogleAccount(credsObject);
+    })
 })
 //////  //////////////  //////
 ////// SIGN-IN COMPLETE //////
