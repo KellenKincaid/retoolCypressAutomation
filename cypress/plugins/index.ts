@@ -25,6 +25,18 @@ module.exports = (on:any, config:any) => {
     // `on` is used to hook into various events Cypress emits
     // `config` is the resolved Cypress config
 
+    // on('before:browser:launch', (browser:any = {}, launchOptions:any) => {
+    //     if (browser.family === 'chromium' && browser.name !== 'electron') {
+    //         launchOptions.args.push("--incognito");                
+    //         return launchOptions
+    //     }
+
+    //     if (browser.name === 'electron') {                
+    //         launchOptions.preferences.incognito = true               
+    //         return launchOptions
+    //     }
+    // }) 
+
     on('task', {
         GetCypressVouchAccountCredentials() {
             const child_process = require('child_process');
