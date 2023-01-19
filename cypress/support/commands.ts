@@ -64,6 +64,16 @@ Cypress.Commands.add("SignInToGoogleAccount", (credsObject:any) => {
 
     // Click 'Next' button.
     cy.ClickNextButton();
+
+    // Error-handling
+    cy.origin('https://myaccount.google.com', () => {
+        cy.on('uncaught:exception', (e) => {
+            if (e.message.includes('Things went bad')) {
+                 // we expected this error, so let's ignore it and let the test continue 
+                 return false
+            } 
+        }) 
+    })
 })
 
 // declare global {
