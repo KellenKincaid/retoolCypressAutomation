@@ -21,59 +21,15 @@
 /////////// When you run your first test here, it will fail and instead create a config file at:  ///////////
 ///////////      cypress/utility/config.conf                                                      ///////////
 /////////// For the Vouch-account-credential-retrieval to work, you must enter your own 1Password ///////////
-///////////     credentials in the aforementioned config file (don't add any extra spaces)        ///////////
+///////////     credentials in the aforementioned config file (don't add any extra spaces).       ///////////
 /////////// This file is protected by the gitignore so you don't have worry about accidentally    ///////////
 ///////////     pushing it to the remote repo.                                                    ///////////
 /////////// Your own 1Password credentials are necessary to be able to retrieve the credentials   ///////////
 ///////////     of qaCypressAutomation@vouch.us from 1Password.                                   ///////////
 ///////////                                                                                       ///////////
-///////////                                       PROBLEMS                                        ///////////
-///////////                                                                                       ///////////
-/////////// For some reason, when I rerun a test, the sign-in fails because after it enters the   ///////////
-///////////     one-time 2FA password, it then prompts the test for its email again.              ///////////
-/////////// I'll fix this later.                                                                  ///////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
-const ClickNextButton = () => {
-    cy.contains('span','Next')
-        .parent('button')
-        .click();
-}
-
-const SignInToGoogleAccount = () => {
-    // Get Cypress Vouch account credentials.
-    const credsObject:any = Cypress.env().CYPRESS_VOUCH_ACCOUNT_CREDS;
-
-    // Go to google sign in page
-    cy.visit('https://accounts.google.com/');
-
-    // Enter email.
-    cy.get('input[type="email"]')
-        .type(credsObject.email);
-
-    // Click 'Next' buttton.
-    ClickNextButton();
-
-    // Enter password.
-    cy.get('div[id="password"]')
-        .find('input[type="password"]')
-        .type(credsObject.password);
-
-    // Click 'Next' button.
-    ClickNextButton();
-
-    // Enter one-time password password.
-    cy.contains('div', 'Enter code')
-        .parent('div')
-        .find('input[type="tel"]')
-        .type(credsObject.oneTimePassword);
-
-    // Click 'Next' button.
-    ClickNextButton();
-}
-*/
 
 /*
     TODO
@@ -83,7 +39,7 @@ const SignInToGoogleAccount = () => {
 */
 
 
-beforeEach('Sign in to Google and go to the Retool web app', () => {
+beforeEach('Sign in to the Google account', () => {
     cy.task('GetCypressVouchAccountCredentials').then((credsObject:any) => {
         cy.SignInToGoogleAccount(credsObject);
     })
