@@ -11,7 +11,7 @@ This project is intended to use Cypress to streamline the test automation of Ret
 
 - Cypress will open and ask you which testing type you want to do. Choose *E2E Testing*
 - Cypress will then ask you which browser you'd like to use. Choose *CHROME* 
-- Cypress will then display the your test files. Choose the one you want to run.        
+- Cypress will then display the test files. Choose the one you want to run.        
                                                                                        
 ### BACKGROUND                                                                            
 - Before our Cypress tests are able to access Retool web apps, each must first sign in to a Vouch account with access to Vouch's Retool web apps.                        
